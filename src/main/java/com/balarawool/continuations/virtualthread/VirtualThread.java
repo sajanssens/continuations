@@ -5,6 +5,7 @@ import jdk.internal.vm.ContinuationScope;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+// A VT is nothing but a Continuation!
 public class VirtualThread {
     private static final AtomicInteger COUNTER = new AtomicInteger(1);
     public static final ContinuationScope SCOPE = new ContinuationScope("VirtualThread");
@@ -18,7 +19,7 @@ public class VirtualThread {
     }
 
     public void run() {
-        System.out.println("VirtualThread "+id+" is running on "+Thread.currentThread());
+        System.out.println("VirtualThread " + id + " is running on " + Thread.currentThread());
         cont.run();
     }
 }

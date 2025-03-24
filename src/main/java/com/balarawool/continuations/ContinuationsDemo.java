@@ -8,17 +8,18 @@ public class ContinuationsDemo {
         var cont = getContinuation();
         cont.run();
         System.out.println("Do something");
-        cont.run();
-        cont.run();
+        // cont.run(); // 👈🏼 RESUMES execution 1
+        // cont.run(); // 👈🏼 RESUMES execution 2
+        // cont.run(); // 👈🏼 RESUMES execution ?
     }
 
     private static Continuation getContinuation() {
-        var scope = new ContinuationScope("Demo");
-        var cont = new Continuation(scope, () -> {
+        var scope = new ContinuationScope("Demo"); // like a namespace for a cont.
+        var cont = new Continuation(scope, () -> { // requires scope and runnable
             System.out.println("A");
-            Continuation.yield(scope);
+            // Continuation.yield(scope); // 👈🏼 PAUSES execution 1
             System.out.println("B");
-            Continuation.yield(scope);
+            // Continuation.yield(scope); // 👈🏼 PAUSES execution 2
             System.out.println("C");
         });
         return cont;

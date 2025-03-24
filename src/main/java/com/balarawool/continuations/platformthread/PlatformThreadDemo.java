@@ -1,6 +1,6 @@
 package com.balarawool.continuations.platformthread;
 
-public class Demo {
+public class PlatformThreadDemo {
     public static final Scheduler SCHEDULER = new Scheduler();
 
     public static void main(String[] args) {

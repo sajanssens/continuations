@@ -1,29 +1,31 @@
 package com.balarawool.continuations.virtualthread;
 
-public class Demo {
+public class VirtualThreadDemo {
     public static final VirtualThreadScheduler SCHEDULER = new VirtualThreadScheduler();
 
     public static void main(String[] args) {
-        new Thread(SCHEDULER::start).start();
 
         for (int i = 0; i < 1000; i++) {
-            var vt1 = new VirtualThread(() -> {
+            var vt1 = new VirtualThread(() -> { // TODO 1: show VirtualThread
                 System.out.println("1.1");
                 System.out.println("1.2");
-                WaitingOperation.perform("Network", 2);
+                WaitingOperation.perform("Network", 2); // 👈🏼 should perform the operation, pause now, resume in ... seconds
                 System.out.println("1.3");
                 System.out.println("1.4");
             });
             var vt2 = new VirtualThread(() -> {
                 System.out.println("2.1");
                 System.out.println("2.2");
-                WaitingOperation.perform("DB", 5);
+                WaitingOperation.perform("DB", 5);     // 👈🏼 should perform the operation, pause now, resume in ... seconds
                 System.out.println("2.3");
                 System.out.println("2.4");
             });
 
-            SCHEDULER.schedule(vt1);
-            SCHEDULER.schedule(vt2);
+            SCHEDULER.schedule(vt1); // 👈🏼 should start the VT
+            SCHEDULER.schedule(vt2); // 👈🏼 should start the VT
         }
+
+        // TODO 2: show VirtualThreadScheduler
+        VirtualThreadScheduler.start(SCHEDULER);
     }
 }
