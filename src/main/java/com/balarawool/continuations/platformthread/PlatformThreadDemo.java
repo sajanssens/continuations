@@ -4,8 +4,8 @@ public class PlatformThreadDemo {
     public static final Scheduler SCHEDULER = new Scheduler();
 
     public static void main(String[] args) {
-        for (int i = 0; i < 1000; i++) {
 
+        for (int i = 0; i < 1000; i++) {
             Runnable r1 = () -> {
                 System.out.println("1.1");
                 System.out.println("1.2");
