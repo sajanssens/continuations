@@ -9,6 +9,7 @@ public class ContinuationsDemo {
         cont.run();
         System.out.println("Do something");
         // cont.run(); // 👈🏼 RESUMES execution 1
+        // System.out.println("Do something else");
         // cont.run(); // 👈🏼 RESUMES execution 2
         // cont.run(); // 👈🏼 RESUMES execution ?
     }
@@ -23,15 +24,6 @@ public class ContinuationsDemo {
             System.out.println("C");
         });
         return cont;
-    }
-
-    private static Runnable getRunnable() {
-        Runnable runnable = () -> {
-            System.out.println("A");
-            System.out.println("B");
-            System.out.println("C");
-        };
-        return runnable;
     }
 
 }
